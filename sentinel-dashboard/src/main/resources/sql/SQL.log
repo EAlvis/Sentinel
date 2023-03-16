@@ -1,0 +1,16 @@
+CREATE TABLE `sentinel_metrics`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `gmt_create` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `gmt_modified` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `app` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '应用名称',
+  `timestamp` datetime(0) NULL DEFAULT NULL COMMENT '监控信息的时间戳',
+  `resource` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '资源名',
+  `pass_qps` bigint(20) NULL DEFAULT NULL COMMENT '通过QPS',
+  `success_qps` bigint(20) NULL DEFAULT NULL COMMENT '成功QPS',
+  `block_qps` bigint(20) NULL DEFAULT NULL COMMENT '拒绝QPS',
+  `exception_qps` bigint(20) NULL DEFAULT NULL COMMENT '异常QPS',
+  `rt` double NULL DEFAULT NULL COMMENT '所有successQps的rt的和',
+  `count` int(11) NULL DEFAULT NULL COMMENT '本次聚合的总条数',
+  `resource_code` int(11) NULL DEFAULT NULL COMMENT '资源的hashCode',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'sentinel监控数据' ROW_FORMAT = Dynamic;
